@@ -12,6 +12,10 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import AddIcon from "@mui/icons-material/Add";
 import Pagination from "@mui/material/Pagination";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { handleConvertNumberToString } from './common/helper/department.helper'
 import { user } from '../stores/sliceMemberInfor/index'
 import { getListMember } from "../api/member";
@@ -43,28 +47,34 @@ const MainTable = ({
     handleDeleteUser,
     handleEditUser,
 }: MainTable) => {
-
+    const [pageSize, setPageSize] = useState(PageSize);
+    
     const [stateInforUpdate, setSateInforUpdate] = useState<user[]>(stateInfor);
     const [currentTableData, setCurrentTableData] = useState<user[]>(
-        handleCurrentPage(parseInt(localStorage.getItem("currentPage") as string) || 1, stateInforUpdate, PageSize)
+        handleCurrentPage(parseInt(localStorage.getItem("currentPage") as string) || 1, stateInforUpdate, pageSize)
     );
     const [page, setPage] = useState(parseInt(localStorage.getItem("currentPage") as string) || 1)
 
     useEffect(() => {
         setSateInforUpdate(stateInfor);
         const getCurrPage = parseInt(localStorage.getItem("currentPage") as string);
-        if (Math.ceil(stateInfor.length / PageSize) < getCurrPage) setPage(getCurrPage-1) //delete all last page => active button page-1
+        if (Math.ceil(stateInfor.length / pageSize) < getCurrPage) setPage(getCurrPage-1) //delete all last page => active button page-1
         if (getCurrPage)
-            return setCurrentTableData(handleCurrentPage(getCurrPage, stateInfor, PageSize));
-    }, [stateInfor]);
+            return setCurrentTableData(handleCurrentPage(getCurrPage, stateInfor, pageSize));
+    }, [stateInfor, pageSize]);
 
     const handlePagination = (
         e: React.ChangeEvent<unknown>,
         currPage: number
     ) => {
         localStorage.setItem("currentPage", currPage as any);
-        setCurrentTableData(handleCurrentPage(currPage, stateInforUpdate, PageSize));
+        setCurrentTableData(handleCurrentPage(currPage, stateInforUpdate, pageSize));
         setPage(currPage as any)
+    };
+
+
+    const handleChange = (event: SelectChangeEvent) => {
+        setPageSize(event.target.value as any);
     };
 
 
@@ -74,13 +84,31 @@ const MainTable = ({
             {loading && <div className="loader m-auto"></div> }
             {!loading && stateAccount.id >= 0 &&  listDepart && currentTableData.length && (
                 <div className="Container-body mt-5">
+                    <div className="flex justify-between">
                     {stateAccount.role === "admin" && <Button
                         variant="outlined"
                         startIcon={<AddIcon />}
                         onClick={handleAddUser}
+                        style={{ maxWidth: '80px', maxHeight: '45px', }}
                     >
                         Add
                     </Button>}
+                    
+                    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                        <InputLabel id="demo-select-small">PageSize</InputLabel>
+                        <Select
+                            labelId="demo-select-small"
+                            id="demo-select-small"
+                            value={pageSize as any}
+                            label="PageSize"
+                            onChange={handleChange}
+                        >
+                            <MenuItem value={3}>3</MenuItem>
+                            <MenuItem value={5}>5</MenuItem>
+                            <MenuItem value={10}>10</MenuItem>
+                        </Select>
+                    </FormControl>
+                    </div>
                     <TableContainer component={Paper} className="mt-3">
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
@@ -146,7 +174,7 @@ const MainTable = ({
                     <Pagination
                         className="flex justify-center my-6"
                         page={page}
-                        count={Math.ceil(stateInfor.length / PageSize)}
+                        count={Math.ceil(stateInfor.length / pageSize)}
                         onChange={(e: React.ChangeEvent<unknown>, currPage: number) =>
                             handlePagination(e, currPage)
                         }
