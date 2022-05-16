@@ -16,10 +16,15 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Checkbox from "@mui/material/Checkbox";
+import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
+import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { handleConvertNumberToString } from './common/helper/department.helper'
-import { user } from '../stores/sliceMemberInfor/index'
+import { selectedRow, user } from '../stores/sliceMemberInfor/index'
 import { getListMember } from "../api/member";
 import { handleCurrentPage } from "./pagination/pagination.component";
+import { useDispatch } from "react-redux";
 
 interface ListDepart {
     id: number,
@@ -30,6 +35,7 @@ interface MainTable {
     loading: boolean,
     stateAccount: user,
     stateInfor: user[],
+    stateSelected: number[],
     listDepart: ListDepart,
     handleAddUser: () => void,
     handleDeleteUser: (id:number) => void,
@@ -42,11 +48,13 @@ const MainTable = ({
     loading,
     stateAccount,
     stateInfor,
+    stateSelected,
     listDepart,
     handleAddUser,
     handleDeleteUser,
     handleEditUser,
 }: MainTable) => {
+    const dispatch = useDispatch();
     const [pageSize, setPageSize] = useState(PageSize);
     
     const [stateInforUpdate, setSateInforUpdate] = useState<user[]>(stateInfor);
@@ -77,12 +85,27 @@ const MainTable = ({
         setPageSize(event.target.value as any);
     };
 
+    const isSelected = (id: number) => stateSelected.includes(id);
+
+    const handleChangeSelected = (id: number) => {
+        dispatch(selectedRow(id))
+    }
+
+    const handleSelectedAll = () => {
+        stateInfor.map((user) => {
+            dispatch(selectedRow(user.id))
+        })
+    }
+    console.log("stateSelected: ", stateSelected)
+    console.log("stateInfor: ", stateInfor)
+    console.log("Check: ", stateSelected.length !== stateInfor.length)
+    console.log("Check!!: ", !!stateSelected.length)
 
 
     return (
         <Fragment>
             {loading && <div className="loader m-auto"></div> }
-            {!loading && stateAccount.id >= 0 &&  listDepart && currentTableData.length && (
+            {!loading && stateAccount.id >= 0 && listDepart && !!stateInfor.length && !!stateInfor.length && currentTableData.length && (
                 <div className="Container-body mt-5">
                     <div className="flex justify-between">
                     {stateAccount.role === "admin" && <Button
@@ -113,61 +136,82 @@ const MainTable = ({
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell width="15%">Họ và tên</TableCell>
-                                    <TableCell width="10%">Địa chỉ</TableCell>
-                                    <TableCell width="10%">Tuổi</TableCell>
-                                    <TableCell width="10%">Số điện thoại</TableCell>
-                                    <TableCell width="15%">Email</TableCell>
-                                    <TableCell width="25%">Phòng ban</TableCell>
+                                    <TableCell >
+                                        <Checkbox 
+                                            onChange={handleSelectedAll} 
+                                            // icon={!!stateSelected.length && stateSelected.length !== stateInfor.length
+                                            //     ? <CheckBoxIcon />
+                                            //     // ? (stateSelected.length !== stateInfor.length ? <IndeterminateCheckBoxIcon /> : <CheckBoxIcon /> )
+                                            //     : <CheckBoxOutlineBlankOutlinedIcon />
+                                            // }/>
+                                            icon={stateSelected.length === stateInfor.length
+                                                ? <CheckBoxOutlineBlankOutlinedIcon />
+                                                : <IndeterminateCheckBoxIcon />
+                                            }/>
+                                    </TableCell>
+                                    <TableCell >Họ và tên</TableCell>
+                                    <TableCell >Địa chỉ</TableCell>
+                                    <TableCell >Tuổi</TableCell>
+                                    <TableCell >Số điện thoại</TableCell>
+                                    <TableCell >Email</TableCell>
+                                    <TableCell >Phòng ban</TableCell>
                                     {stateAccount.role === "admin" && (
-                                        <TableCell width="15%">Tùy chọn</TableCell>
+                                        <TableCell >Tùy chọn</TableCell>
                                     )}
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {currentTableData.map((user) => (
-                                    <TableRow
+                                {currentTableData.map((user) => {
+                                    const isCheckSelected = isSelected(user.id)
+                                    return (
+                                        <TableRow
                                         key={`${user.name}-${user.id}`}
                                         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                                    >
-                                        <TableCell component="th" scope="row">
-                                            {user.name} - {user.id}
-                                        </TableCell>
-                                        <TableCell align="left">{user.address}</TableCell>
-                                        <TableCell align="left">{user.age}</TableCell>
-                                        <TableCell align="left">{user.telephone}</TableCell>
-                                        <TableCell align="left">{user.email}</TableCell>
-
-                                        <TableCell align="left" className="">
-                                            {handleConvertNumberToString(
-                                                user.departId,
-                                                listDepart
-                                            ).map((item:string, index:number) => (
-                                                <span key={index} className="inline-block ml-1 px-2 py-1 bg-[#faebd7] rounded-[4px] text-[#d2691e] mb-1 text-center">{item}</span>
-                                            ))}
-                                        </TableCell>
-                                        {stateAccount.role === "admin" && (
-                                            <TableCell align="left">
-                                                <Stack direction="row" spacing={2}>
-                                                    <Button
-                                                        variant="outlined"
-                                                        startIcon={<DeleteIcon />}
-                                                        onClick={() => handleDeleteUser(user.id)}
-                                                    >
-                                                        Delete
-                                                    </Button>
-                                                    <Button
-                                                        variant="contained"
-                                                        endIcon={<EditIcon />}
-                                                        onClick={() => handleEditUser(user.id)}
-                                                    >
-                                                        Edit
-                                                    </Button>
-                                                </Stack>
+                                        >
+                                            <TableCell padding="checkbox" align="center">
+                                                <Checkbox 
+                                                    checked={isCheckSelected}
+                                                    onChange={() => handleChangeSelected(user.id)}
+                                                />
                                             </TableCell>
-                                        )}
-                                    </TableRow>
-                                ))}
+                                            <TableCell component="th" scope="row">
+                                                {user.name} - {user.id}
+                                            </TableCell>
+                                            <TableCell align="left">{user.address}</TableCell>
+                                            <TableCell align="left">{user.age}</TableCell>
+                                            <TableCell align="left">{user.telephone}</TableCell>
+                                            <TableCell align="left">{user.email}</TableCell>
+
+                                            <TableCell align="left" className="">
+                                                {handleConvertNumberToString(
+                                                    user.departId,
+                                                    listDepart
+                                                ).map((item:string, index:number) => (
+                                                    <span key={index} className="inline-block ml-1 px-2 py-1 bg-[#faebd7] rounded-[4px] text-[#d2691e] mb-1 text-center">{item}</span>
+                                                ))}
+                                            </TableCell>
+                                            {stateAccount.role === "admin" && (
+                                                <TableCell align="left">
+                                                    <Stack direction="row" spacing={2}>
+                                                        <Button
+                                                            variant="outlined"
+                                                            startIcon={<DeleteIcon />}
+                                                            onClick={() => handleDeleteUser(user.id)}
+                                                        >
+                                                            Delete
+                                                        </Button>
+                                                        <Button
+                                                            variant="contained"
+                                                            endIcon={<EditIcon />}
+                                                            onClick={() => handleEditUser(user.id)}
+                                                        >
+                                                            Edit
+                                                        </Button>
+                                                    </Stack>
+                                                </TableCell>
+                                            )}
+                                        </TableRow>
+                                    )})}
                             </TableBody>
                         </Table>
                     </TableContainer>

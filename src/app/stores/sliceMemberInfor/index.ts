@@ -14,12 +14,14 @@ export interface user {
 
 interface initialState {
     users: user[],
-    search: string
+    search: string, 
+    selected: number[]
 }
 
 const initialState: initialState = {
     users: [],
-    search: ""
+    search: "",
+    selected: []
 }
 
 const sliceMemberInfor = createSlice({
@@ -45,12 +47,21 @@ const sliceMemberInfor = createSlice({
         filterUser: (state, action) => {
             state.users = action.payload
         },
+        selectedRow: (state, action) => {
+            let selectedOld = state.selected
+            if (selectedOld.includes(action.payload)) {
+                selectedOld = selectedOld.filter((item) => item !== action.payload)
+                state.selected = selectedOld
+            } else {
+                state.selected = [...selectedOld, action.payload]
+            }
+        },
         test: (state) => {
             console.log("test ok")
         }
     }
 })
 
-export const { updateStateUser, addStateUser, deleteUser, updateEditUser, filterUser, test } = sliceMemberInfor.actions
+export const { updateStateUser, addStateUser, deleteUser, updateEditUser, filterUser, selectedRow, test } = sliceMemberInfor.actions
 
 export default sliceMemberInfor.reducer

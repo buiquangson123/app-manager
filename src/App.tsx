@@ -24,6 +24,7 @@ function App() {
   const [showOverlay, setShowOverlay] = useState<boolean>(false)
 
   const dispatch = useDispatch();
+  const stateSelected: number[] = useSelector((state: any) => state.infor.selected);
   const stateInfor: user[] = useSelector((state: any) => state.infor.users);
   const stateLogin = useSelector((state: any) => state.login.account)
   const stateAccount = checkStateAccount() || {}
@@ -115,6 +116,7 @@ function App() {
           loading = {loading}
           stateAccount={stateAccount}
           stateInfor ={stateInfor}
+          stateSelected={stateSelected}
           listDepart={listDepart as any}
           handleAddUser = {handleAddUser}
           handleDeleteUser = {handleDeleteUser}
@@ -205,3 +207,5 @@ function App() {
 }
 
 export default App;
+
+// window.open("https://www.24h.com.vn/", "_blank", "width=1000,height=800,left=500,top=200")
