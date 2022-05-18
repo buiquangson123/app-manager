@@ -22,7 +22,6 @@ import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlin
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { handleConvertNumberToString } from './common/helper/department.helper'
 import { selectedRow, user } from '../stores/sliceMemberInfor/index'
-import { getListMember } from "../api/member";
 import { handleCurrentPage } from "./pagination/pagination.component";
 import { useDispatch } from "react-redux";
 
@@ -85,21 +84,37 @@ const MainTable = ({
         setPageSize(event.target.value as any);
     };
 
+    const [amoutSelected, setAmountSelected] = useState(false)
+    const [isOneOfSelected, setIsOneOfSelected] = useState(false)
     const isSelected = (id: number) => stateSelected.includes(id);
 
-    const handleChangeSelected = (id: number) => {
-        dispatch(selectedRow(id))
+    const handleChangeSelected = async(id: number) => {
+        await dispatch(selectedRow({id: id, type: "one"}))
     }
-
+    
+    
     const handleSelectedAll = () => {
+        setAmountSelected(true)
         stateInfor.map((user) => {
-            dispatch(selectedRow(user.id))
+            dispatch(selectedRow({ id: user.id, type: "all", isCheck: amoutSelected }))
         })
     }
-    console.log("stateSelected: ", stateSelected)
-    console.log("stateInfor: ", stateInfor)
-    console.log("Check: ", stateSelected.length !== stateInfor.length)
-    console.log("Check!!: ", !!stateSelected.length)
+    
+    useEffect(() => {
+        if (stateSelected.length === stateInfor.length) {
+            setAmountSelected(true)
+        } else if (!!stateSelected.length && stateSelected.length !== stateInfor.length){
+            setAmountSelected(false)
+            setIsOneOfSelected(true)
+        } else {
+            setIsOneOfSelected(false)
+            setAmountSelected(false)
+        }
+    }, [stateSelected])
+
+    console.log("arr selected: ", stateSelected)
+    console.log("arr infor: ", stateInfor.length)
+    
 
 
     return (
@@ -139,15 +154,9 @@ const MainTable = ({
                                     <TableCell >
                                         <Checkbox 
                                             onChange={handleSelectedAll} 
-                                            // icon={!!stateSelected.length && stateSelected.length !== stateInfor.length
-                                            //     ? <CheckBoxIcon />
-                                            //     // ? (stateSelected.length !== stateInfor.length ? <IndeterminateCheckBoxIcon /> : <CheckBoxIcon /> )
-                                            //     : <CheckBoxOutlineBlankOutlinedIcon />
-                                            // }/>
-                                            icon={stateSelected.length === stateInfor.length
-                                                ? <CheckBoxOutlineBlankOutlinedIcon />
-                                                : <IndeterminateCheckBoxIcon />
-                                            }/>
+                                            checked={amoutSelected}
+                                            icon={!amoutSelected ? isOneOfSelected ? <IndeterminateCheckBoxIcon /> : <CheckBoxOutlineBlankOutlinedIcon />  : <CheckBoxIcon /> }
+                                        />
                                     </TableCell>
                                     <TableCell >Họ và tên</TableCell>
                                     <TableCell >Địa chỉ</TableCell>

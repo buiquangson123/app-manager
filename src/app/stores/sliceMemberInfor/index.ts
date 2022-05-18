@@ -49,11 +49,26 @@ const sliceMemberInfor = createSlice({
         },
         selectedRow: (state, action) => {
             let selectedOld = state.selected
-            if (selectedOld.includes(action.payload)) {
-                selectedOld = selectedOld.filter((item) => item !== action.payload)
+            if (action.payload.type === "one") {
+                if (selectedOld.includes(action.payload.id)) {
+                selectedOld = selectedOld.filter((item) => item !== action.payload.id)
                 state.selected = selectedOld
+                } else {
+                    state.selected = [...selectedOld, action.payload.id]
+                }
             } else {
-                state.selected = [...selectedOld, action.payload]
+                console.log("lọt")
+                if (!action.payload.isCheck) {
+                    const selectedNew = [...selectedOld, action.payload.id].reduce(function (accumulator, element) {
+                        if (accumulator.indexOf(element) === -1) {
+                            accumulator.push(element)
+                        }
+                        return accumulator
+                    }, [])
+                    state.selected = selectedNew
+                } else {
+                    state.selected = []
+                }
             }
         },
         test: (state) => {
