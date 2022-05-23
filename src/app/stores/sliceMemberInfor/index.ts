@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+export interface column {
+    label: string,
+    value: string
+}
+
 export interface user {
     id: number,
     name: string,

@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -21,7 +21,7 @@ import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox
 import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { handleConvertNumberToString } from './common/helper/department.helper'
-import { selectedRow, user } from '../stores/sliceMemberInfor/index'
+import { column, selectedRow, user } from '../stores/sliceMemberInfor/index'
 import { handleCurrentPage } from "./pagination/pagination.component";
 import { useDispatch } from "react-redux";
 
@@ -36,9 +36,13 @@ interface MainTable {
     stateInfor: user[],
     stateSelected: number[],
     listDepart: ListDepart,
+    columns: column[],
     handleAddUser: () => void,
     handleDeleteUser: (id:number) => void,
     handleEditUser: (id:number) => void,
+    sortChange: (value: string, type: string) => void,
+    setColumn: () => void,
+    setSortColumn: () => void
 }
 
 let PageSize = 3;
@@ -52,6 +56,10 @@ const MainTable = ({
     handleAddUser,
     handleDeleteUser,
     handleEditUser,
+    columns,
+    sortChange,
+    setColumn,
+    setSortColumn
 }: MainTable) => {
     const dispatch = useDispatch();
     const [pageSize, setPageSize] = useState(PageSize);
@@ -65,9 +73,13 @@ const MainTable = ({
     useEffect(() => {
         setSateInforUpdate(stateInfor);
         const getCurrPage = parseInt(localStorage.getItem("currentPage") as string);
-        if (Math.ceil(stateInfor.length / pageSize) < getCurrPage) setPage(getCurrPage-1) //delete all last page => active button page-1
-        if (getCurrPage)
+        if (Math.ceil(stateInfor.length / pageSize) < getCurrPage) setPage(getCurrPage - 1) //delete all last page => active button page-1
+        if (getCurrPage && Math.ceil(stateInfor.length / pageSize) >= getCurrPage) {
             return setCurrentTableData(handleCurrentPage(getCurrPage, stateInfor, pageSize));
+        } else {
+            setPage(Math.ceil(stateInfor.length / pageSize))
+            return setCurrentTableData(handleCurrentPage(Math.ceil(stateInfor.length / pageSize), stateInfor, pageSize));
+        }
     }, [stateInfor, pageSize]);
 
     const handlePagination = (
@@ -110,17 +122,13 @@ const MainTable = ({
             setIsOneOfSelected(false)
             setAmountSelected(false)
         }
-    }, [stateSelected])
-
-    console.log("arr selected: ", stateSelected)
-    console.log("arr infor: ", stateInfor.length)
-    
+    }, [stateSelected]) 
 
 
     return (
         <Fragment>
             {loading && <div className="loader m-auto"></div> }
-            {!loading && stateAccount.id >= 0 && listDepart && !!stateInfor.length && !!stateInfor.length && currentTableData.length && (
+            {!loading && stateAccount.id >= 0 && listDepart && !!stateInfor.length && !!stateInfor.length && columns && currentTableData.length && (
                 <div className="Container-body mt-5">
                     <div className="flex justify-between">
                     {stateAccount.role === "admin" && <Button
@@ -150,7 +158,7 @@ const MainTable = ({
                     <TableContainer component={Paper} className="mt-3">
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
-                                <TableRow>
+                                {<TableRow>
                                     <TableCell >
                                         <Checkbox 
                                             onChange={handleSelectedAll} 
@@ -158,16 +166,48 @@ const MainTable = ({
                                             icon={!amoutSelected ? isOneOfSelected ? <IndeterminateCheckBoxIcon /> : <CheckBoxOutlineBlankOutlinedIcon />  : <CheckBoxIcon /> }
                                         />
                                     </TableCell>
-                                    <TableCell >Họ và tên</TableCell>
-                                    <TableCell >Địa chỉ</TableCell>
-                                    <TableCell >Tuổi</TableCell>
-                                    <TableCell >Số điện thoại</TableCell>
-                                    <TableCell >Email</TableCell>
-                                    <TableCell >Phòng ban</TableCell>
+                                   
+                                    <TableCell >
+                                        <span>Họ và tên</span>
+                                    <button onClick={sortChange("name", "asc") as any}>
+                                            <img
+                                                // src={`sort${sortedColumn && sortedColumn?.type
+                                                //     && column.dataKey === sortedColumn.dataKey
+                                                //     ? sortedColumn.type === 'asc'
+                                                //         ? '-asc'
+                                                //         : '-desc'
+                                                //     : '-primary-36'
+                                                //     }.svg`}
+                                                src={`sort-primary-36.svg`}
+                                                alt='Sort' />
+                                        </button>
+                                    </TableCell>
+                                    
+                                    <TableCell >
+                                        <span>Địa chỉ</span>
+                                        <button onClick={sortChange("address", "desc") as any}>
+                                            <img
+                                                src={`sort-asc.svg`}
+                                                alt='Sort' />
+                                        </button>
+                                    </TableCell>
+                                    <TableCell >
+                                        Tuổi
+                                    </TableCell>
+                                    <TableCell >
+                                        Số điện thoại
+                                    </TableCell>
+                                    <TableCell >
+                                        Email
+                                    </TableCell>
+                                    
+                                    <TableCell >
+                                        Phòng ban
+                                    </TableCell>
                                     {stateAccount.role === "admin" && (
                                         <TableCell >Tùy chọn</TableCell>
                                     )}
-                                </TableRow>
+                                </TableRow>}
                             </TableHead>
                             <TableBody>
                                 {currentTableData.map((user) => {

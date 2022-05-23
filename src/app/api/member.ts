@@ -52,3 +52,14 @@ export const filterMembers = async (search: string) => {
   const filteredList = await axios.get(`http://localhost:3004/users?name_like=${search}`)
   return filteredList;
 };
+
+// http://localhost:3004/users?_sort=name&_order=desc:giam asc:tang
+export const sortUsers = async (key: string, type: string) => {
+  const listUsers = await axios.get(`http://localhost:3004/users?_sort=${key}&_order=${type}`)
+  return listUsers;
+};
+
+export const getColumns = async () => {
+  const listColumn = await axios.get(`http://localhost:3004/column`)
+  return listColumn;
+};

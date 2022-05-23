@@ -17,6 +17,28 @@
       "name_depart": "Phòng nhân sự"
     }
   ],
+  "column": [
+    {
+      "label": "Họ và tên",
+      "value": "name"
+    },
+    {
+      "label": "Địa chỉ",
+      "value": "address"
+    },
+    {
+      "label": "Tuổi",
+      "value": "age"
+    },
+    {
+      "label": "Số điện thoại",
+      "value": "telephone"
+    },
+    {
+      "label": "Email",
+      "value": "email"
+    }
+  ],
   "users": [
     {
       "id": 1,
@@ -101,557 +123,488 @@
       "id": 10
     },
     {
-        "name": "Bùi Đức Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1
-        ],
-        "id": 11
-      },
-      {
-        "name": "Bùi Đức Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1
-        ],
-        "id": 12
-      },
-      {
-        "name": "Bùi Đức Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1
-        ],
-        "id": 13
-      },
-      {
-        "name": "Bùi Đức Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1
-        ],
-        "id": 14
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 16
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 17
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 18
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 19
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 20
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 21
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 22
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 23
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 24
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 25
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 26
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 27
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 28
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 29
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 30
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 31
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 32
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 33
-      },
+      "name": "Bùi Đức Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1
+      ],
+      "id": 11
+    },
     {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 34
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 35
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 36
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 37
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 39
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 40
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 41
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 42
-      },
-      {
-        "name": "Bùi Đức Mạnh Mạnh",
-        "address": "Quảng Ninh",
-        "age": 45,
-        "telephone": "0324589658",
-        "password": "1111111111",
-        "role": "admin",
-        "email": "buiquangson123@gmail.com",
-        "departId": [
-          1,
-          3,
-          4
-        ],
-        "id": 43
-      },
-      {
-        "name": "Nguyễn Thị Hoa Nhung",
-        "address": "Hải Dương",
-        "age": 12,
-        "telephone": "0325869458",
-        "password": "12345678",
-        "role": "staff",
-        "email": "hanhnguyen@gmail.com",
-        "departId": [
-          1
-        ],
-        "id": 44
-      },
-      {
-        "name": "Nguyễn Thị Hoa Nhung",
-        "address": "Hải Dương",
-        "age": 12,
-        "telephone": "0325869458",
-        "password": "12345678",
-        "role": "staff",
-        "email": "hanhnguyen@gmail.com",
-        "departId": [
-          1,
-          3
-        ],
-        "id": 45
-      },
-      {
-        "name": "SON Bui Quang (VTI.P2)",
-        "address": "Hải Dương",
-        "age": 22,
-        "telephone": "0324589875",
-        "password": "12345678",
-        "role": "staff",
-        "email": "buiquangson@gmail.com",
-        "departId": [
-          2
-        ],
-        "id": 46
-      },
-      {
-        "name": "SON Bui Quang (VTI.P2)",
-        "address": "Hải Dương",
-        "age": 22,
-        "telephone": "0324589875",
-        "password": "12345678",
-        "role": "staff",
-        "email": "buiquangson@gmail.com",
-        "departId": [
-          2,
-          1
-        ],
-        "id": 47
-      },
-      {
-        "name": "Nguyễn Thị Hoa Nhung",
-        "address": "Yên Bái",
-        "age": 22,
-        "telephone": "0325869458",
-        "password": "12345678",
-        "role": "staff",
-        "email": "hanhnguyen@gmail.com",
-        "departId": [
-          1,
-          3
-        ],
-        "id": 48
-      },
-      {
-        "name": "Nguyễn Thị Hoa Nhung",
-        "address": "Yên Bái",
-        "age": 22,
-        "telephone": "0325869458",
-        "password": "12345678",
-        "role": "staff",
-        "email": "hanhnguyen@gmail.com",
-        "departId": [
-          1,
-          3
-        ],
-        "id": 49
-      },
-      {
-        "name": "ssssssssssssssaaaaaa",
-        "address": "Hải Dương",
-        "age": 12,
-        "telephone": "0324589875",
-        "password": "12345678",
-        "role": "staff",
-        "email": "son.buiquang@vti.com.vn",
-        "departId": [
-          1
-        ],
-        "id": 50
-      }
+      "name": "Bùi Đức Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1
+      ],
+      "id": 12
+    },
+    {
+      "name": "Bùi Đức Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1
+      ],
+      "id": 13
+    },
+    {
+      "name": "Bùi Đức Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1
+      ],
+      "id": 14
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 16
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 17
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 18
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 19
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 20
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 21
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 22
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 23
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 24
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 25
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 26
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 27
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 28
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 29
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 30
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 31
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 32
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 33
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 34
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 35
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 36
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 37
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 39
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 40
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 41
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 42
+    },
+    {
+      "name": "Bùi Đức Mạnh Mạnh",
+      "address": "Quảng Ninh",
+      "age": 45,
+      "telephone": "0324589658",
+      "password": "1111111111",
+      "role": "admin",
+      "email": "buiquangson123@gmail.com",
+      "departId": [
+        1,
+        3,
+        4
+      ],
+      "id": 43
+    },
+    {
+      "name": "Nguyễn Thị Hoa Nhung",
+      "address": "Hải Dương",
+      "age": 12,
+      "telephone": "0325869458",
+      "password": "12345678",
+      "role": "staff",
+      "email": "hanhnguyen@gmail.com",
+      "departId": [
+        1
+      ],
+      "id": 44
+    },
+    {
+      "name": "Nguyễn Thị Hoa Nhung",
+      "address": "Hải Dương",
+      "age": 12,
+      "telephone": "0325869458",
+      "password": "12345678",
+      "role": "staff",
+      "email": "hanhnguyen@gmail.com",
+      "departId": [
+        1,
+        3
+      ],
+      "id": 45
+    }
   ]
 }
-

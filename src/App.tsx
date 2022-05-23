@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./styles/index.css";
-import { test, user } from "./app/stores/sliceMemberInfor/index";
+import { column, user } from "./app/stores/sliceMemberInfor/index";
 import { useSelector, useDispatch, TypedUseSelectorHook } from "react-redux";
 import { updateStateUser, deleteUser } from "./app/stores/sliceMemberInfor/index";
 import FormAddUser from "./app/modules/common/component/FormAddUser";
 import FormEditUser from "./app/modules/common/component/FormEditUser";
-import { getListMember, deleteMember, editMember } from "./app/api/member";
+import { getListMember, deleteMember, editMember, sortUsers } from "./app/api/member";
 import { department, getDepartment } from "./app/api/department";
 import MainTable from './app/modules/MainTable'
 import Header from './app/modules/Header'
@@ -22,6 +22,13 @@ function App() {
   const [showDelete, setShowDelete] = useState<boolean>(false);
   const [editUser, setEditUser] = useState<user>();
   const [showOverlay, setShowOverlay] = useState<boolean>(false)
+
+  const [columns, setColumn] = useState<column[]>()
+  const [sortedColumn, setSortColumn] = useState({
+    label: "Họ và tên",
+    value: "name",
+    type: "desc"
+  })
 
   const dispatch = useDispatch();
   const stateSelected: number[] = useSelector((state: any) => state.infor.selected);
@@ -64,6 +71,26 @@ function App() {
     };
     handleAPI();
   }, []);
+
+  const sortChange = useCallback(
+    (value: string, type: string) => async() => {
+      // const direction = (!sortedColumn || sortedColumn.dataKey !== column.dataKey)
+      //   ? 'desc' : (sortedColumn.type === 'desc' ? 'asc' : 'desc');
+      const sortAPI = await sortUsers(value, "asc")
+      setColumn(sortAPI.data)
+    },
+    [sortedColumn],
+  )
+
+  console.log("columns: ", columns)
+
+  useEffect(() => {
+    const handleColumnAPI = async() => {
+      const sortAPI = await sortUsers("name", "desc")
+      setColumn(sortAPI.data)
+    }
+    handleColumnAPI()
+  }, [])
 
   const handleAddUser = () => {
     if (edit) setEdit(!edit);
@@ -112,12 +139,16 @@ function App() {
 
         <Header stateAccount={stateAccount}></Header>
 
-        {listDepart && <MainTable 
+        {listDepart && columns && <MainTable 
           loading = {loading}
           stateAccount={stateAccount}
           stateInfor ={stateInfor}
           stateSelected={stateSelected}
           listDepart={listDepart as any}
+          columns={columns}
+          setColumn={setColumn as any}
+          setSortColumn={setSortColumn as any}
+          sortChange={sortChange}
           handleAddUser = {handleAddUser}
           handleDeleteUser = {handleDeleteUser}
           handleEditUser = {handleEditUser}
