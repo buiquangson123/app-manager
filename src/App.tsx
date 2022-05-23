@@ -25,7 +25,6 @@ function App() {
 
   const [columns, setColumn] = useState<column[]>()
   const [sortedColumn, setSortColumn] = useState({
-    label: "Họ và tên",
     value: "name",
     type: "desc"
   })
@@ -71,26 +70,6 @@ function App() {
     };
     handleAPI();
   }, []);
-
-  const sortChange = useCallback(
-    (value: string, type: string) => async() => {
-      // const direction = (!sortedColumn || sortedColumn.dataKey !== column.dataKey)
-      //   ? 'desc' : (sortedColumn.type === 'desc' ? 'asc' : 'desc');
-      const sortAPI = await sortUsers(value, "asc")
-      setColumn(sortAPI.data)
-    },
-    [sortedColumn],
-  )
-
-  console.log("columns: ", columns)
-
-  useEffect(() => {
-    const handleColumnAPI = async() => {
-      const sortAPI = await sortUsers("name", "desc")
-      setColumn(sortAPI.data)
-    }
-    handleColumnAPI()
-  }, [])
 
   const handleAddUser = () => {
     if (edit) setEdit(!edit);
@@ -139,19 +118,17 @@ function App() {
 
         <Header stateAccount={stateAccount}></Header>
 
-        {listDepart && columns && <MainTable 
+        {listDepart && <MainTable 
           loading = {loading}
           stateAccount={stateAccount}
           stateInfor ={stateInfor}
           stateSelected={stateSelected}
           listDepart={listDepart as any}
-          columns={columns}
-          setColumn={setColumn as any}
           setSortColumn={setSortColumn as any}
-          sortChange={sortChange}
           handleAddUser = {handleAddUser}
           handleDeleteUser = {handleDeleteUser}
           handleEditUser = {handleEditUser}
+          sortedColumn={sortedColumn}
         ></MainTable>}
       </div>
 

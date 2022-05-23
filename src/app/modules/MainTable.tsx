@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react"
+import { Fragment, useCallback, useEffect, useState } from "react"
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -21,13 +21,19 @@ import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox
 import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { handleConvertNumberToString } from './common/helper/department.helper'
-import { column, selectedRow, user } from '../stores/sliceMemberInfor/index'
+import { selectedRow, user } from '../stores/sliceMemberInfor/index'
 import { handleCurrentPage } from "./pagination/pagination.component";
 import { useDispatch } from "react-redux";
+import { sortUsers } from "../api/member";
 
 interface ListDepart {
     id: number,
     name_depart: string
+}
+
+interface ISortedColumn {
+    type: string, 
+    value: string
 }
 
 interface MainTable {
@@ -36,13 +42,11 @@ interface MainTable {
     stateInfor: user[],
     stateSelected: number[],
     listDepart: ListDepart,
-    columns: column[],
+    sortedColumn: ISortedColumn,
     handleAddUser: () => void,
     handleDeleteUser: (id:number) => void,
     handleEditUser: (id:number) => void,
-    sortChange: (value: string, type: string) => void,
-    setColumn: () => void,
-    setSortColumn: () => void
+    setSortColumn: (type: string, value: string) => void
 }
 
 let PageSize = 3;
@@ -56,10 +60,8 @@ const MainTable = ({
     handleAddUser,
     handleDeleteUser,
     handleEditUser,
-    columns,
-    sortChange,
-    setColumn,
-    setSortColumn
+    setSortColumn,
+    sortedColumn
 }: MainTable) => {
     const dispatch = useDispatch();
     const [pageSize, setPageSize] = useState(PageSize);
@@ -125,10 +127,32 @@ const MainTable = ({
     }, [stateSelected]) 
 
 
+    const sortColumn = useCallback((value: string, type: string) => async () => {
+            // const direction = (!sortedColumn || sortedColumn.dataKey !== column.dataKey)
+            //   ? 'desc' : (sortedColumn.type === 'desc' ? 'asc' : 'desc');
+        console.log("111")
+        const sortAPI = await sortUsers(value, type)
+            // setColumn(sortAPI.data)
+        setCurrentTableData(handleCurrentPage(parseInt(localStorage.getItem("currentPage") as string), sortAPI.data, pageSize))
+    },[sortedColumn])
+    
+
+    const handleSort = (value: string, type: string) => {
+        setSortColumn(value, type)
+        sortColumn(value, type)
+        // const handleAPI = async() => {
+        //     const sortAPI = await sortUsers(value, type)
+        //     console.log(sortAPI.data)
+        //     setCurrentTableData(handleCurrentPage(parseInt(localStorage.getItem("currentPage") as string), sortAPI.data, pageSize))
+        // }
+        // handleAPI()
+    }
+
+
     return (
         <Fragment>
             {loading && <div className="loader m-auto"></div> }
-            {!loading && stateAccount.id >= 0 && listDepart && !!stateInfor.length && !!stateInfor.length && columns && currentTableData.length && (
+            {!loading && stateAccount.id >= 0 && listDepart && !!stateInfor.length && !!stateInfor.length && currentTableData.length && (
                 <div className="Container-body mt-5">
                     <div className="flex justify-between">
                     {stateAccount.role === "admin" && <Button
@@ -158,7 +182,7 @@ const MainTable = ({
                     <TableContainer component={Paper} className="mt-3">
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
-                                {<TableRow>
+                                <TableRow>
                                     <TableCell >
                                         <Checkbox 
                                             onChange={handleSelectedAll} 
@@ -169,7 +193,7 @@ const MainTable = ({
                                    
                                     <TableCell >
                                         <span>Họ và tên</span>
-                                    <button onClick={sortChange("name", "asc") as any}>
+                                    <button onClick={() => handleSort("name", "asc")}>
                                             <img
                                                 // src={`sort${sortedColumn && sortedColumn?.type
                                                 //     && column.dataKey === sortedColumn.dataKey
@@ -185,7 +209,7 @@ const MainTable = ({
                                     
                                     <TableCell >
                                         <span>Địa chỉ</span>
-                                        <button onClick={sortChange("address", "desc") as any}>
+                                        <button onClick={() => handleSort("address", "desc")}>
                                             <img
                                                 src={`sort-asc.svg`}
                                                 alt='Sort' />
@@ -207,7 +231,7 @@ const MainTable = ({
                                     {stateAccount.role === "admin" && (
                                         <TableCell >Tùy chọn</TableCell>
                                     )}
-                                </TableRow>}
+                                </TableRow>
                             </TableHead>
                             <TableBody>
                                 {currentTableData.map((user) => {
